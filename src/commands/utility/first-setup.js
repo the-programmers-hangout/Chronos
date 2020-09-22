@@ -1,0 +1,1 @@
+// command for new guilds to write to setup prefix, guild id and stuff
