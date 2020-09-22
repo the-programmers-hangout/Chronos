@@ -24,6 +24,7 @@ class ChronosClient extends AkairoClient {
       blockBots: true,
       blockClient: true,
       allowMention: true,
+      commandUtil: true,
       directory: join(__dirname, "commands"),
     });
 
