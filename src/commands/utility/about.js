@@ -15,13 +15,14 @@ class About extends Command {
     const embed = new MessageEmbed()
       .setColor("#86F97C")
       .setTitle("**Chronos**")
-      .setDescription("A bot that automoatically manages slowmode in a channel, based on the activity in it.")
+      .setThumbnail(this.client.user.displayAvatarURL())
+      .setDescription("A bot that automatically manages slowmode in a channel, based on the activity in it.")
       .addFields(
-        {name: "**Prefix**", value: `${this.handler.prefix}`},
-        {name: "**Contributors**", value: "to be filled"},
-        {name: "**Build info**", value: "```Version: 0.0.0\nDiscord.js: v12.3.1\nDiscord Akairo: v8.2.0```"},
-        {name: "**Uptime**", value: `${uptime}`},
-        {name: "**Ping**", value: `${Date.now() - message.createdTimestamp}`},
+        {name: "**Prefix**", value: `\`${this.handler.prefix}\``, inline: true},
+        {name: "**Contributors**", value: "moe#9999\nChill#4048\ndfireBird#2687", inline: true},
+        {name: "**Build info**", value: "```fix\nVersion: 0.0.0\nDiscord.js: v12.3.1\nDiscord Akairo: v8.2.0```"},
+        {name: "**Uptime**", value: `${uptime}`, inline: true},
+        {name: "**Ping**", value: `${Date.now() - message.createdTimestamp}ms`, inline: true},
         {name: "**Source**", value: "[Check out the source code on GitHub](https://github.com/the-programmers-hangout/Chronos)"},
       )
         
