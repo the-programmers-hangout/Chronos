@@ -34,16 +34,16 @@ class Setup extends Command {
   }
 
   exec(message) {
-    const logchannel = args.logchannel.id
+    const logChannel = args.logchannel.id
     const prefix = args.prefix
     const staffrole = args.staffrole.id
 
     const add = {
-      "guildID": message.guild.id,
-      "logChannel": logchannel,
-      "prefix": prefix,
-      "staffRole": staffrole,
-      "slowmodeChannels": [
+      guildID: message.guild.id,
+      logChannel,
+      prefix,
+      staffrole,
+      slowmodeChannels: [
 
       ]
     }
