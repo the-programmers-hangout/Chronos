@@ -25,7 +25,7 @@ class MentionListener extends Listener {
         .setThumbnail(this.client.user.displayAvatarURL())
         .setDescription("A bot that automatically manages slowmode in a channel, based on the activity in it.")
         .addFields(
-            {name: "**Prefix**", value: `\`${this.handler.prefix}\``, inline: true},
+            {name: "**Prefix**", value: `\`${this.client.commandHandler.prefix}\``, inline: true},
             {name: "**Contributors**", value: "[Check out the contributors on GitHub](https://github.com/the-programmers-hangout/Chronos/graphs/contributors)", inline: true},
             {name: "**Build info**", value: "```fix\nVersion: 0.0.0\nDiscord.js: v12.3.1\nDiscord Akairo: v8.2.0```"},
             {name: "**Uptime**", value: `${uptime}`, inline: true},
