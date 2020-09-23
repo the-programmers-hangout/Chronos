@@ -16,7 +16,11 @@ class MentionListener extends Listener {
         return;
     }
 
-    if (message.content === `<@${this.client.user.id}>`) {
+    if (!message.content.startsWith("<")) {
+      return;
+    }
+
+    if (message.mentions.users.first() == this.client.user.id) {
         let uptime = timeUtils.msToTime(this.client.uptime);
 
         const embed = new MessageEmbed()
