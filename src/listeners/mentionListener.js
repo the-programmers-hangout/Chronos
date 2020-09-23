@@ -16,7 +16,7 @@ class MentionListener extends Listener {
         return;
     }
 
-    if (message.mentions.users.first.id == this.client.id) {
+    if (message.content === `<@${this.client.user.id}>`) {
         let uptime = timeUtils.msToTime(this.client.uptime);
 
         const embed = new MessageEmbed()
