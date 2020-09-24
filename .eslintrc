@@ -1,0 +1,9 @@
+{
+  "extends": "tulip",
+  "rules": {
+    "indent": ["error", 2],
+    "line-comment-position": "off",
+    "multiline-comment-style": "off",
+    "comma-dangle": ["error", "always-multiline"]
+  }
+}
