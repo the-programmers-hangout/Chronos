@@ -1,10 +1,6 @@
-const { config } = require("dotenv");
-const {
-  AkairoClient,
-  CommandHandler,
-  ListenerHandler,
-} = require("discord-akairo");
-const { join } = require("path");
+const { config } = require('dotenv');
+const { AkairoClient, CommandHandler, ListenerHandler } = require('discord-akairo');
+const { join } = require('path');
 
 config();
 
@@ -15,21 +11,21 @@ class ChronosClient extends AkairoClient {
         ownerID: process.env.OWNERID,
       },
       {
-        disableMentions: "all",
-      }
+        disableMentions: 'all',
+      },
     );
 
     this.commandHandler = new CommandHandler(this, {
-      prefix: "+",
+      prefix: '+',
       blockBots: true,
       blockClient: true,
       allowMention: true,
       commandUtil: true,
-      directory: join(__dirname, "commands"),
+      directory: join(__dirname, 'commands'),
     });
 
     this.listnerHandler = new ListenerHandler(this, {
-      directory: join(__dirname, "listeners"),
+      directory: join(__dirname, 'listeners'),
     });
 
     this.commandHandler.useListenerHandler(this.listnerHandler);
