@@ -15,7 +15,24 @@ $ npm start
 ```
 
 ## Deploying
-// TODO
+
+You can run the bot locally using Docker.
+
+1. Create `.env` using `create-env.sh`
+
+    ```bash
+    chmod +x ./create-env.sh
+    bash ./create-env.sh
+    ```
+
+2. Run the bot with Docker Compose. `--build` is to be used when there are changes made to the bot and you want them to
+   be reflected.
+
+    ```bash
+    docker-compose up [--build]
+    ```
+
+To take down the bot, you can run `docker-compose down` in the repository.
 
 ## Technologies
 
