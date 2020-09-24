@@ -1,4 +1,3 @@
-
 // command for new guilds to write to setup prefix, guild id and stuff
 const { Command } = require("discord-akairo");
 const config = require("../../../config.json");
@@ -54,3 +53,5 @@ class Setup extends Command {
 }
 
 module.exports = Setup;
+
+
