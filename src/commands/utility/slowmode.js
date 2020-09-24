@@ -1,9 +1,10 @@
 const { Command } = require("discord-akairo");
 const { Message, TextChannel } = require("discord.js");
+const ms = require("ms");
 const { msToTime } = require("../../utilities/timeUtils");
 
-// Define the max possible slow mode. [6 hours, in seconds].
-const MAX_SLOW_MODE = 21_600;
+// Define the max possible slow mode. [Single time unit only, please].
+const MAX_SLOW_MODE = ms("6h");
 
 class SlowMode extends Command {
   constructor() {
@@ -28,17 +29,23 @@ class SlowMode extends Command {
             // !phrase would be triggered with 0, so we check if it is undefined or not.
             if (phrase === undefined || !phrase.length) return undefined;
 
-            // Parse the string to int.
-            const seconds = parseInt(phrase, 10);
+            // Parse the input phrase to time format.
+            if (ms(phrase) === 0 || ms(phrase)) return ms(phrase);
 
-            // Check if the parsed int is actually an int or not before checking max possible slow mode.
-            if (!Number.isNaN(seconds) && seconds > MAX_SLOW_MODE) return undefined;
-            return seconds;
+            // This will store the final parsed time.
+            let parsedTime = 0;
+            // Split the input time by spaces.
+            const words = phrase.split(" ");
+            for (const word of words) {
+              if (ms(word) === 0 || ms(word)) parsedTime += ms(word);
+              else return undefined;
+            }
+            return parsedTime;
           },
           match: "rest",
           prompt: {
-            start: `Please enter the slow mode duration! [>= ${msToTime(MAX_SLOW_MODE * 1000)}]`,
-            retry: `Please enter a valid slow mode duration! [>= ${msToTime(MAX_SLOW_MODE * 1000)}]`,
+            start: `Please enter the slow mode duration! [>= ${msToTime(MAX_SLOW_MODE)}]`,
+            retry: `Please enter a valid slow mode duration! [>= ${msToTime(MAX_SLOW_MODE)}]`,
             cancel: "cancelled!",
             retries: 4,
             time: 3e4,
@@ -63,8 +70,8 @@ class SlowMode extends Command {
     }
 
     // Edit the channel and set the provided slow mode.
-    channel.edit({ rateLimitPerUser: time });
-    return message.channel.send(`Slow mode has been set in ${channel} for ${time ? msToTime(time * 1000) : "0s"}.`);
+    channel.edit({ rateLimitPerUser: time / 1000 });
+    return message.channel.send(`Slow mode has been set in ${channel} for ${time ? msToTime(time) : "0s"}.`);
   }
 }
 
