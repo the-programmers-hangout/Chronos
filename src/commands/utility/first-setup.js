@@ -29,6 +29,14 @@ class Setup extends Command {
           start: 'Which role should be allowed to run the bot?',
           retry: 'Enter a valid role'
         }
+      },
+      {
+        id: 'BotOwner',
+        type: 'user',
+        prompt: {
+          start: 'Who is the bot owner / the bot hoster?',
+          retry: 'Enter a valid user'
+        }
       }
     ]});
   }
@@ -37,6 +45,7 @@ class Setup extends Command {
     const logChannel = args.logchannel.id
     const prefix = args.prefix
     const staffrole = args.staffrole.id
+    config.BotOwner = args.BotOwner.id
 
     const add = {
       guildID: message.guild.id,
