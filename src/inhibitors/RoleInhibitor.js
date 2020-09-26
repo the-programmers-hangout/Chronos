@@ -9,10 +9,7 @@ class RoleInhibitor extends Inhibitor {
   }
 
   exec(message) {
-    console.log('executing inhibitor');
-    console.log('config', config);
-    const guildConfiguration = config.guildConfigurations.find(el => el.guildID === message.guild.id);
-    console.log(guildConfiguration);
+    const guildConfiguration = config.guildConfigurations.find(el => el.guildID == message.guild.id);
 
     return !message.member.roles.cache.has(guildConfiguration.staffRole);
   }
