@@ -1,6 +1,7 @@
 // command for new guilds to write to setup prefix, guild id and stuff
 const { Command } = require("discord-akairo");
 const config = require("../../../config.json");
+const fs = require('fs')
 
 class Setup extends Command {
   constructor() {
@@ -56,7 +57,10 @@ class Setup extends Command {
 
       ]
     }
-    config.guildConfigurations.push(add)
+    fs.writeFile('config.json', add, 'utf-8', function(err) {
+      if (err) return console.log(err);
+      console.log('failed to save file');
+    })
 
   }
 }
