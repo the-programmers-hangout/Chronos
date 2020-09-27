@@ -1,6 +1,6 @@
 // command for new guilds to write to setup prefix, guild id and stuff
-const { Command } = require("discord-akairo");
-const config = require("../../../config.json");
+const { Command } = require('discord-akairo');
+const config = require('../../../config.json');
 const fs = require('fs')
 
 class Setup extends Command {
