@@ -1,7 +1,7 @@
 // command for new guilds to write to setup prefix, guild id and stuff
 const { Command } = require('discord-akairo');
 const config = require('../../../config.json');
-const fs = require('fs')
+const fs = require('fs');
 
 class Setup extends Command {
   constructor() {
@@ -43,10 +43,10 @@ class Setup extends Command {
   }
 
   exec(message) {
-    const logChannel = args.logchannel.id
-    const prefix = args.prefix
-    const staffrole = args.staffrole.id
-    config.BotOwner = args.BotOwner.id
+    const logChannel = args.logchannel.id;
+    const prefix = args.prefix;
+    const staffrole = args.staffrole.id;
+    config.BotOwner = args.BotOwner.id;
 
     const add = {
       guildID: message.guild.id,
@@ -56,11 +56,11 @@ class Setup extends Command {
       slowmodeChannels: [
 
       ]
-    }
+    };
     fs.writeFile('config.json', add, 'utf-8', function(err) {
       if (err) return console.log(err);
       console.log('failed to save file');
-    })
+    });
 
   }
 }
