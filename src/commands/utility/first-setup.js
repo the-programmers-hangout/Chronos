@@ -1,3 +1,4 @@
+
 // command for new guilds to write to setup prefix, guild id and stuff
 const { Command } = require('discord-akairo');
 const config = require('../../../config.json');
@@ -5,23 +6,23 @@ const fs = require('fs');
 
 class Setup extends Command {
   constructor() {
-    super("setup", {
-      aliases: ["setup"] ,
+    super('setup', {
+      aliases: ['setup'],
       args: [{
         id: 'logchannel',
         type: 'channel',
         prompt: {
           start: 'Which channel should the bot log info?',
-          retry: 'Enter a valid channel'
-        }
+          retry: 'Enter a valid channel',
+        },
       },
       {
         id: 'prefix',
         type: 'string',
         prompt: {
           start: 'What prefix should the bot have?',
-          retry: 'Enter a valid prefix'
-        }
+          retry: 'Enter a valid prefix',
+        },
       },
       {
         id: 'staffrole',
@@ -61,7 +62,6 @@ class Setup extends Command {
       if (err) return console.log(err);
       console.log('failed to save file');
     });
-
   }
 }
 
