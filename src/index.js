@@ -1,5 +1,5 @@
 const { config } = require('dotenv');
-const { AkairoClient, CommandHandler, ListenerHandler } = require('discord-akairo');
+const { AkairoClient, CommandHandler, ListenerHandler, InhibitorHandler } = require('discord-akairo');
 const { join } = require('path');
 
 config();
@@ -28,9 +28,15 @@ class ChronosClient extends AkairoClient {
       directory: join(__dirname, 'listeners'),
     });
 
+    this.inhibitorHandler = new InhibitorHandler(this, {
+      directory: join(__dirname, 'inhibitors'),
+    });
+
     this.commandHandler.useListenerHandler(this.listnerHandler);
+    this.commandHandler.useInhibitorHandler(this.inhibitorHandler);
 
     this.listnerHandler.loadAll();
+    this.inhibitorHandler.loadAll();
     this.commandHandler.loadAll();
   }
 }
