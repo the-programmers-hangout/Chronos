@@ -5,7 +5,7 @@
       "guildID": 0,
       "logChannel": 1,
       "prefix": "+",
-      "staffRole": "staff_role_name",
+      "staffRole": "staff_role_id",
       "slowmodeChannels": [
 
       ]
