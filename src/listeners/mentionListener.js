@@ -15,7 +15,7 @@ class MentionListener extends Listener {
       return undefined;
     }
 
-    if (!message.content.startsWith('<')) {
+    if (!message.content.startsWith('<@')) {
       return undefined;
     }
 
