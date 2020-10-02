@@ -1,6 +1,8 @@
-// Command for new guilds to write to setup prefix, guild id and stuff
+
+// command for new guilds to write to setup prefix, guild id and stuff
 const { Command } = require('discord-akairo');
 const config = require('../../../config.json');
+const fs = require('fs');
 
 class Setup extends Command {
   constructor() {
@@ -27,16 +29,25 @@ class Setup extends Command {
         type: 'role',
         prompt: {
           start: 'Which role should be allowed to run the bot?',
-          retry: 'Enter a valid role',
-        },
-      }],
-    });
+          retry: 'Enter a valid role'
+        }
+      },
+      {
+        id: 'BotOwner',
+        type: 'user',
+        prompt: {
+          start: 'Who is the bot owner / the bot hoster?',
+          retry: 'Enter a valid user'
+        }
+      }
+    ]});
   }
 
-  exec(message, args) {
+  exec(message) {
     const logChannel = args.logchannel.id;
-    const { prefix } = args;
+    const prefix = args.prefix;
     const staffrole = args.staffrole.id;
+    config.BotOwner = args.BotOwner.id;
 
     const add = {
       guildID: message.guild.id,
@@ -45,9 +56,12 @@ class Setup extends Command {
       staffrole,
       slowmodeChannels: [
 
-      ],
+      ]
     };
-    config.guildConfigurations.push(add);
+    fs.writeFile('config.json', add, 'utf-8', function(err) {
+      if (err) return console.log(err);
+      console.log('failed to save file');
+    });
   }
 }
 

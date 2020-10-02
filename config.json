@@ -1,7 +1,7 @@
 {
 "BotOwner" : 345541952500006912,
 "guildConfigurations": [
-  {
+    {
       "guildID": 0,
       "logChannel": 1,
       "prefix": "+",
