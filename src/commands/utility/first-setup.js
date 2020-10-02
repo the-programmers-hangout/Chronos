@@ -12,7 +12,7 @@ class Setup extends Command {
         id: 'logchannel',
         type: 'channel',
         prompt: {
-          start: 'Which channel should the bot log info?',
+          start: 'Which channel should the bot log info? (tag the channel name)',
           retry: 'Enter a valid channel',
         },
       },
@@ -36,14 +36,14 @@ class Setup extends Command {
         id: 'BotOwner',
         type: 'user',
         prompt: {
-          start: 'Who is the bot owner / the bot hoster?',
+          start: 'Who is the bot owner / the bot hoster? (tag the user)',
           retry: 'Enter a valid user'
         }
       }
     ]});
   }
 
-  exec(message) {
+  exec(message, args) {
     const logChannel = args.logchannel.id;
     const prefix = args.prefix;
     const staffrole = args.staffrole.id;
@@ -58,9 +58,11 @@ class Setup extends Command {
 
       ]
     };
-    fs.writeFile('config.json', add, 'utf-8', function(err) {
+
+    config.guildConfigurations.push(add)
+
+    fs.writeFile('config.json', JSON.stringify(config, null, 2), 'utf-8', function(err) {
       if (err) return console.log(err);
-      console.log('failed to save file');
     });
   }
 }
