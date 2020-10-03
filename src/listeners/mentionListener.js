@@ -15,11 +15,8 @@ class MentionListener extends Listener {
       return undefined;
     }
 
-    if (!message.content.startsWith('<@')) {
-      return undefined;
-    }
-
-    if (message.mentions.users.first()?.id === this.client.user.id) {
+    const mentionRegex = new RegExp(`^<@(!)?${this.client.user.id}>$`);
+    if (mentionRegex.test(message.content.trim())) {
       const uptime = timeUtils.msToTime(this.client.uptime);
 
       const embed = new MessageEmbed()

@@ -1,0 +1,12 @@
+{
+  "botOwner": "1234",
+  "guildConfigurations": [
+    {
+      "guildID": 1234,
+      "logChannel": 1234,
+      "prefix": "+",
+      "staffRole": "1234",
+      "slowmodeChannels": []
+    }
+  ]
+}
