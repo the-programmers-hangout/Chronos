@@ -2,10 +2,10 @@
 "BotOwner" : 345541952500006912,
 "guildConfigurations": [
     {
-      "guildID": 0,
-      "logChannel": 1,
-      "prefix": "+",
-      "staffRole": "staff_role_id",
+      "guildID": "725713887361761290",
+      "logChannel": "758671946270375948",
+      "prefix": "++",
+      "staffRole": "758672072389296168",
       "slowmodeChannels": [
 
       ]
