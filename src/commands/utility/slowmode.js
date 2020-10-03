@@ -31,14 +31,14 @@ class SlowMode extends Command {
             if (phrase === undefined || !phrase.length) return undefined;
 
             // Parse the input phrase to time format.
-            if (ms(phrase) === 0 || ms(phrase)) return ms(phrase);
+            if (ms(phrase) === 0 || ms(phrase) > 1000) return ms(phrase);
 
             // This will store the final parsed time.
             let parsedTime = 0;
             // Split the input time by spaces.
             const words = phrase.split(' ');
             for (const word of words) {
-              if (ms(word) === 0 || ms(word)) parsedTime += ms(word);
+              if (ms(word) === 0 || ms(word) > 1000) parsedTime += ms(word);
               else return undefined;
             }
             return parsedTime;
@@ -68,7 +68,7 @@ class SlowMode extends Command {
   exec(message, { channel, time }) {
     // Check if the bot has permission to edit the channel settings before trying anything else.
     if (!message.guild.me.permissionsIn(channel).has('MANAGE_CHANNELS')) {
-      return message.util.send(`${message.author}, I don\'t have the permission to edit that channel!`);
+      return message.util.send('I don\'t have the permission to edit that channel!');
     }
 
     // Edit the channel and set the provided slow mode.
