@@ -25,7 +25,7 @@ class MentionListener extends Listener {
         .setThumbnail(this.client.user.displayAvatarURL())
         .setDescription('A bot that automatically manages slowmode in a channel, based on the activity in it.')
         .addFields(
-          { name: '**Prefix**', value: `\`${this.client.commandHandler.prefix}\``, inline: true },
+          { name: '**Prefix**', value: `\`${this.client.commandHandler.prefix(message)}\``, inline: true },
           {
             name: '**Contributors**',
             value: '[Check out the contributors on GitHub](https://github.com/the-programmers-hangout/Chronos/graphs/contributors)',
