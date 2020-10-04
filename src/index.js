@@ -1,6 +1,7 @@
 const { config } = require('dotenv');
 const { AkairoClient, CommandHandler, ListenerHandler, InhibitorHandler } = require('discord-akairo');
 const { join } = require('path');
+const configFile = require('../config.json')
 
 config();
 
@@ -8,7 +9,7 @@ class ChronosClient extends AkairoClient {
   constructor() {
     super(
       {
-        ownerID: process.env.OWNERID,
+        ownerID: configFile.botOwner,
       },
       {
         disableMentions: 'all',
