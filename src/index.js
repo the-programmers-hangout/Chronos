@@ -1,7 +1,7 @@
 const { config } = require('dotenv');
 const { AkairoClient, CommandHandler, ListenerHandler, InhibitorHandler } = require('discord-akairo');
 const { join } = require('path');
-const configFile = require('../config.json')
+const configFile = require('../config.json');
 
 config();
 
