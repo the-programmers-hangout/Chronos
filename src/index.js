@@ -18,9 +18,7 @@ class ChronosClient extends AkairoClient {
     );
 
     this.commandHandler = new CommandHandler(this, {
-      prefix: (message) => {
-        return getGuildConfig(message.guild.id).prefix || '+';
-      },
+      prefix: message => getGuildConfig(message.guild.id).prefix || '+',
       blockBots: true,
       blockClient: true,
       allowMention: true,
