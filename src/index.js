@@ -26,7 +26,7 @@ class ChronosClient extends AkairoClient {
           }
         });
 
-        return prefix;
+        return prefix || '+';
       },
       blockBots: true,
       blockClient: true,
