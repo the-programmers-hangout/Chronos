@@ -2,6 +2,7 @@ const { config } = require('dotenv');
 const { AkairoClient, CommandHandler, ListenerHandler, InhibitorHandler } = require('discord-akairo');
 const { join } = require('path');
 const configFile = require('../config.json');
+const getGuildConfig = require('./utilities/getGuildConfig');
 
 config();
 
@@ -18,15 +19,7 @@ class ChronosClient extends AkairoClient {
 
     this.commandHandler = new CommandHandler(this, {
       prefix: (message) => {
-        let prefix;
-        
-        configFile.guildConfigurations.forEach((conf, i) => {
-          if (conf.guildID === message.guild.id) {
-            prefix = conf.prefix;
-          }
-        });
-
-        return prefix || '+';
+        return getGuildConfig(message.guild.id).prefix || '+';
       },
       blockBots: true,
       blockClient: true,

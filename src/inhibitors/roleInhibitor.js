@@ -1,5 +1,6 @@
 const { Inhibitor } = require('discord-akairo');
 const config = require('../../config.json');
+const getGuildConfig = require('../utilities/getGuildConfig');
 
 class RoleInhibitor extends Inhibitor {
   constructor() {
@@ -11,7 +12,7 @@ class RoleInhibitor extends Inhibitor {
   exec(message) {
     if (config.guildConfigurations.length === 0) return false; // No guild has been added so allow all commands
 
-    const guildConfiguration = config.guildConfigurations.find(el => el.guildID === parseInt(message.guild.id, 10));
+    const guildConfiguration = getGuildConfig(message.guild.id);
     return !(guildConfiguration !== undefined && message.member.roles.cache.has(guildConfiguration.staffRole));
   }
 }
