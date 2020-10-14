@@ -10,10 +10,11 @@ class RoleInhibitor extends Inhibitor {
   }
 
   exec(message) {
-    if (config.guildConfigurations.length === 0) return false; // No guild has been added so allow all commands
-
     const guildConfiguration = getGuildConfig(message.guild.id);
-    return !(guildConfiguration !== undefined && message.member.roles.cache.has(guildConfiguration.staffRole));
+    if (guildConfiguration === undefined)
+      return !(message.member.hasPermission('ADMINISTRATOR') || message.member.id === config.botOwner);
+    else
+      return !message.member.roles.cache.has(guildConfiguration.staffRole);
   }
 }
 
